@@ -31,7 +31,7 @@
                             <td>{{$transaction->atas_nama}}</td>
                             <td>{{$transaction->nominal}}</td>
                             <td>{{$transaction->created_at}}</td>
-                            <td><img src="{{asset($transaction->image)}}" height="100px" alt=""</td>
+                            <td><img src="{{asset($transaction->image)}}" height="100px" alt=""></td>
                             <td></td>
                             <td><a href="{{ route('transaction.edit',$transaction) }}" data-toggle="modal" data-target="#upload" class="btn btn-warning">UPLOAD</a></td>
                         </tr>   
@@ -51,7 +51,7 @@
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{ route('transaction.update') }}" enctype="multipart/form-data"> 
-                    <input type="file" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}"><br>
+                    <input type="file" name="image" class="form-control"><br>
                     <input type="hidden" name="id_transaction" id="id_transaction">
                     <input type="submit" name="submit" value="Kirim" class="btn btn-success" style="float:left;margin-right:10px">          
                     @csrf   

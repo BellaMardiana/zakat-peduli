@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use App\Transaction;
 use App\Donation;
 use App\Program;
@@ -53,11 +55,6 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'image'=>'image'
-        ],[
-            'required' =>'harus diisi',
-        ]);
         
         $imagePath = $request->file('image')->store('transaction');
         
@@ -111,14 +108,8 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        $this->validate($request,[
-            'image'=>'image'
-        ],[
-            'required' =>'harus diisi',
-        ]);
-
         $transaction = Transaction::find($transaction);
-        
+
         $transaction->nominal = $request->get('nominal');
         $transaction->atas_nama = $request->get('atas_nama');
         $transaction->email = $request->get('email');
